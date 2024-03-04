@@ -5,8 +5,8 @@
     - [Turn off UART0 serial console](#turn-off-uart0-serial-console)
     - [Turn on I2C](#turn-on-i2c)
   - [Prepare OS](#prepare-os)
-    - [Turn on 32bit armhf, because prebuilt binaries are compiled like that](#turn-on-32bit-armhf-because-prebuilt-binaries-are-compiled-like-that)
     - [Install required packages](#install-required-packages)
+    - [Turn on 32bit armhf, because prebuilt binaries are compiled like that](#turn-on-32bit-armhf-because-prebuilt-binaries-are-compiled-like-that)
     - [Create user and grand permissions](#create-user-and-grand-permissions)
   - [Install Pi-Star specifics](#install-pi-star-specifics)
     - [Setup up web servers](#setup-up-web-servers)
@@ -37,17 +37,19 @@ systemctl disable serial-getty@ttyS0
 System --> Hardware --> enable pi-i2c1, in system it will appear as /dev/i2c-2
 
 ## Prepare OS
+### Install required packages
+```shell
+apt install git php-fpm php-json php-mbstring php-zip nginx stm32flash shellinabox geoip-database zip avahi-daemon avrdude flashrom
+```
+
 ### Turn on 32bit armhf, because prebuilt binaries are compiled like that
+*Only needed if you want prebuilt binaries*
+
 TODO: Probably create debian packages or podman images with pre-built images for arm64 arch too, also redone update strategy from git checkout to system packages as that will solve also dependencies and architecture
 
 ```shell
 dpkg --add-architecture armhf
-apt install 
-```
-
-### Install required packages
-```shell
-apt install libc6:armhf libusb-1.0-0:armhf libgps28:armhf git php-fpm php-json php-mbstring php-zip nginx stm32flash shellinabox geoip-database zip avahi-daemon avrdude flashrom
+apt install libc6:armhf libusb-1.0-0:armhf libgps28:armhf
 ```
 
 ### Create user and grand permissions
