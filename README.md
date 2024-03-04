@@ -119,4 +119,4 @@ chown www-data dstar-radio.mmdvmhost dstarrepeater hostname hosts ircddbgateway 
 Set up sudo without password to web server (yes, I am not kidding but PHP is 
 really full of sudo commands)
 
-`visudo` and add following line at bottom `www-data ALL=(ALL) NOPASSWD: ALL`
+Copy `/etc/sudoers.d`
