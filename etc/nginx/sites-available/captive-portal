@@ -1,0 +1,50 @@
+server_names_hash_bucket_size 64;
+
+server {
+	listen 80;
+	server_name www.msftconnecttest.com www.msftncsi.com clients3.google.com;
+	return 302 http://192.168.50.1/index.php;
+}
+
+server {
+	listen 80;
+	server_name connectivitycheck.gstatic.com connectivitycheck.android.com;
+	return 302 http://192.168.50.1/index.php;
+}
+
+server {
+	listen 80;
+	server_name www.appleiphonecell.com captive.apple.com www.apple.com;
+	return 302 http://192.168.50.1/index.php;
+}
+
+server {
+	listen 80;
+	server_name *.apple.com.edgekey.net;
+	return 302 http://192.168.50.1/index.php;
+}
+
+server {
+        listen 192.168.50.1:80;
+        root /var/www/dashboard;
+
+        try_files $uri $uri/ /index.php;
+
+        location ^~ /admin {
+		deny	192.168.50.1;
+		allow	192.168.50.0/24;
+		deny	all;
+		try_files $uri $uri/ =404;
+		client_max_body_size 512K;
+
+	# Load the defaults
+	include             /etc/nginx/default.d/php.conf;
+	}
+
+	location ~ /\.git {
+		deny all;
+	}
+
+	# Load the defaults
+	include             /etc/nginx/default.d/*.conf;
+}

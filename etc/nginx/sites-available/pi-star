@@ -1,0 +1,21 @@
+server {
+        listen 80 default_server;
+        root /var/www/dashboard;
+
+        location ^~ /admin {
+		try_files $uri $uri/ =404;
+                auth_basic "Restricted";
+                auth_basic_user_file /var/www/.htpasswd;
+                client_max_body_size 512K;
+
+	# Load the defaults
+	include             /etc/nginx/default.d/php.conf;
+	}
+
+	location ~ /\.git {
+		deny all;
+	}
+
+	# Load the defaults
+	include             /etc/nginx/default.d/*.conf;
+}
