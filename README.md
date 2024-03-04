@@ -1,5 +1,19 @@
 # Manual install Pi-Star on Orange Pi Zero 2W
 
+- [Manual install Pi-Star on Orange Pi Zero 2W](#manual-install-pi-star-on-orange-pi-zero-2w)
+  - [Install required packages](#install-required-packages)
+  - [Turn on 32bit armhf, because prebuilt binaries are compiled like that](#turn-on-32bit-armhf-because-prebuilt-binaries-are-compiled-like-that)
+  - [Turn off UART0 serial console](#turn-off-uart0-serial-console)
+  - [Turn on I2C](#turn-on-i2c)
+  - [Create user and grand permissions](#create-user-and-grand-permissions)
+  - [Install mmdvm binaries](#install-mmdvm-binaries)
+  - [Install pi star scripts](#install-pi-star-scripts)
+  - [Install web](#install-web)
+  - [Setup up web servers](#setup-up-web-servers)
+  - [Copy pistar files](#copy-pistar-files)
+    - [usr local](#usr-local)
+    - [Now ugly part comes](#now-ugly-part-comes)
+
 ## Install required packages
 apt install git php-fpm php-json php-mbstring php-zip nginx stm32flash shellinabox geoip-database zip avahi-daemon avrdude flashrom
 
