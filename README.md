@@ -10,6 +10,21 @@ dpkg --add-architecture armhf
 apt install libc6:armhf libusb-1.0-0:armhf libgps28:armhf
 
 
+## Turn off UART0 serial console
+Yes, because all MMDVM HATs using UART0 rather than other UARTs, we have to use UART0. That is not mistake by design, but really first versions of Rpi had only two UARTs and probably noone want solve switching to UART1.
+
+`orangepi-config`
+System --> Bootenv
+replace `"console=both"` for `"console=none"`
+add `"extraargs=console=tty1"`
+
+```systemctl stop serial-getty@ttyS0
+systemctl disable serial-getty@ttyS0```
+
+## Turn on I2C
+System --> Hardware --> enable pi-i2c1, in system it will appear as /dev/i2c-2
+
+
 ## Create user and grand permissions
 adduser mmdvm
  - check UID 1001 and home /home/mmdvm
